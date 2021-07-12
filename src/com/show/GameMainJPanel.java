@@ -1,4 +1,4 @@
-package com.scnu.show;
+package com.show;
 
 import java.awt.Graphics;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import com.scnu.element.ElementObj;
-import com.scnu.manager.ElementManager;
-import com.scnu.manager.GameElement;
+import com.element.ElementObj;
+import com.manager.ElementManager;
+import com.manager.GameElement;
 
 /**
  * @说明 游戏的主要面板

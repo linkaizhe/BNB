@@ -1,4 +1,4 @@
-package com.scnu.manager;
+package com.manager;
 
 public enum GameElement {
 	/**

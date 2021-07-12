@@ -1,13 +1,12 @@
-package com.scnu.controller;
+package com.controller;
 
 import java.util.List;
 import java.util.Map;
 
-
-import com.scnu.element.ElementObj;
-import com.scnu.manager.ElementManager;
-import com.scnu.manager.GameElement;
-import com.scnu.manager.GameLoad;
+import com.element.ElementObj;
+import com.manager.ElementManager;
+import com.manager.GameElement;
+import com.manager.GameLoad;
 /**
  * @说明 游戏的主线程：用于控制游戏加载、游戏关卡、游戏运行时自动化、
  * 	   游戏判定等等；游戏地图切换、资源释放、重新读取等等

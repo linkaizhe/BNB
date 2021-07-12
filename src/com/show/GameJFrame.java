@@ -1,4 +1,4 @@
-package com.scnu.show;
+package com.show;
 
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;

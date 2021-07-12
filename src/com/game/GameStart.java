@@ -1,9 +1,9 @@
-package com.scnu.game;
+package com.game;
 
-import com.scnu.controller.GameListener;
-import com.scnu.controller.GameThread;
-import com.scnu.show.GameJFrame;
-import com.scnu.show.GameMainJPanel;
+import com.controller.GameListener;
+import com.controller.GameThread;
+import com.show.GameJFrame;
+import com.show.GameMainJPanel;
 
 public class GameStart {
 	/**

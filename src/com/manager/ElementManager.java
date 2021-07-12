@@ -1,11 +1,11 @@
-package com.scnu.manager;
+package com.manager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.scnu.element.ElementObj;
+import com.element.ElementObj;
 /**
  * @说明 本类是元素管理器，专门存储所有的元素，同时，提供方法
  * 	       给予视图和控制获取数据

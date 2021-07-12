@@ -1,4 +1,4 @@
-package com.scnu.element;
+package com.element;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

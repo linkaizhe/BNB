@@ -1,4 +1,4 @@
-package com.scnu.manager;
+package com.manager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +10,7 @@ import java.util.Set;
 
 import javax.swing.ImageIcon;
 
-import com.scnu.element.ElementObj;
+import com.element.ElementObj;
 
 /**
  * @说明 加载器(工具：用户读取配置文件的工具)工具类，大多数提供的是static方法
