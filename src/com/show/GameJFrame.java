@@ -27,8 +27,7 @@ public class GameJFrame extends JFrame{
 	private BeginJPanel beginJPanel;//游戏开始前的界面
 	private GameMainJPanel gameJPanel;//游戏主要界面
 	private KeyListener  keyListener;//键盘监听
-	private MouseListener mouseListener;//鼠标监听
-	private Thread thead;  //游戏主线程
+	private Thread thead = null;  //游戏主线程
 	private CardLayout layout;//布局
 	
 	public GameJFrame() {
@@ -62,6 +61,7 @@ public class GameJFrame extends JFrame{
 	 */
 	public void startGame() {
 		gameJPanel = new GameMainJPanel();//新建界面
+		thead = new Thread();//线程实例化
 		mainJPanel.add("game", gameJPanel);
 		if(mainJPanel!=null) {
 			this.add(mainJPanel);
@@ -82,9 +82,6 @@ public class GameJFrame extends JFrame{
 	}
 	public void setKeyListener(KeyListener keyListener) {
 		this.keyListener = keyListener;
-	}
-	public void setMouseListener(MouseListener mouseListener) {
-		this.mouseListener = mouseListener;
 	}
 	public void setThead(Thread thead) {
 		this.thead = thead;
