@@ -22,7 +22,7 @@ public class GameThread extends Thread{
 	public void run() { // 游戏的run方法  主线程
 		while(true) { // 扩展，可以将true变为一个变量用于控制结束
 //		游戏开始前  读进度条，加载游戏资源(或场景资源)
-//			gameLoad();//暂时注释
+			gameLoad();
 //		游戏进行时  游戏过程中
 			gameRun();
 //		游戏当前场景结束  游戏资源回收(场景资源)
@@ -42,7 +42,8 @@ public class GameThread extends Thread{
 //		GameLoad.loadImg(); // 暂时注释
 //		GameLoad.MapLoad(5); // 加载地图 可以为变量 随机地图
 //		加载主角
-		GameLoad.loadPlay(); //可以带参数 单人或者多人
+		GameLoad.AutoplayMusic("music/ppt.wav");
+//		GameLoad.loadPlay(); //可以带参数 单人或者多人
 //		加载敌人NPC等
 		
 //		全部加载完成 游戏启动

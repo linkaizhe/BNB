@@ -1,5 +1,6 @@
 package com.manager;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
@@ -9,6 +10,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 
 import com.element.ElementObj;
@@ -91,6 +95,28 @@ public class GameLoad {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+	}
+	/**
+	 * 加载bgm
+	 */
+	public static void AutoplayMusic(String locate)
+	{
+		try
+		{
+			File Path = new File(locate);
+			if(Path.exists())
+			{
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(Path);
+				Clip bgm = AudioSystem.getClip();
+				bgm.open(audioInput);
+				bgm.start();
+				bgm.loop(Clip.LOOP_CONTINUOUSLY);//循环播放
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 加载玩家
