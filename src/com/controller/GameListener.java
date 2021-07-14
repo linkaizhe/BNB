@@ -15,6 +15,8 @@ import com.manager.GameElement;
  */
 public class GameListener implements KeyListener{
 	private ElementManager em = ElementManager.getManager();
+	private static boolean gamePlaying = false; //游戏运行
+	private static boolean twoPlayer; //双人模式
 	/*
 	 * 能否通过一个集合来记录所有按下的键，如果重复触发，就直接结束
 	 * 同时，第一次按下，记录到集合中，第二次判定集合中是否有
@@ -58,6 +60,18 @@ public class GameListener implements KeyListener{
 		for(ElementObj obj:play) {
 			obj.keyClick(false, e.getKeyCode());
 		}
+	}
+	public static boolean isGamePlaying() {
+		return gamePlaying;
+	}
+	public static void setGamePlaying(boolean gamePlaying) {
+		GameListener.gamePlaying = gamePlaying;
+	}
+	public static boolean isTwoPlayer() {
+		return twoPlayer;
+	}
+	public static void setTwoPlayer(boolean twoPlayer) {
+		GameListener.twoPlayer = twoPlayer;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.show;
 
+import java.awt.CardLayout;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -20,33 +21,50 @@ import javax.swing.JPanel;
  * 		4.显示窗体
  */
 public class GameJFrame extends JFrame{
-	public static int GameX = 800;//GAMEX 
-	public static int GameY = 600;
-	private JPanel jPanel =null; //正在现实的面板
-	private KeyListener  keyListener=null;//键盘监听
-	private MouseMotionListener mouseMotionListener=null; //鼠标监听
-	private MouseListener mouseListener=null;
-	private Thread thead=null;  //游戏主线程
+	public static int GameX = 1200;
+	public static int GameY = 900;
+	private JPanel mainJPanel; //显示的界面
+	private BeginJPanel beginJPanel;//游戏开始前的界面
+	private GameMainJPanel gameJPanel;//游戏主要界面
+	private KeyListener  keyListener;//键盘监听
+	private MouseListener mouseListener;//鼠标监听
+	private Thread thead;  //游戏主线程
+	private CardLayout layout;//布局
 	
 	public GameJFrame() {
 		init();
 	}
+//	初始化
 	public void init() {
-		this.setSize(GameX, GameY); //设置窗体大小
 		this.setTitle("泡泡堂");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置退出并且关闭
-		this.setLocationRelativeTo(null);//屏幕居中显示
+		this.setSize(GameX, GameY); //设置窗体大小
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置退出并且关闭进程
+		this.setResizable(false);//设置窗体大小不可改变(暂定)
+		this.setLocationRelativeTo(null);//设置窗体屏幕居中显示
+		
+		this.mainJPanel = new JPanel();
+		this.setmainJPanel(mainJPanel);
+		this.layout = new CardLayout();
+		this.mainJPanel.setLayout(layout);
+		this.beginJPanel = new BeginJPanel();
+		this.mainJPanel.add("begin", beginJPanel);
+		this.layout.show(mainJPanel, "begin");
+		this.setVisible(true);//显示界面
 	}
-	/*窗体布局：存档、读档等按钮button 扩展知识*/
-	public void addButton() {
-//		this.setLayout(manager);//布局格式，可以添加控件
-	}	
 	/**
-	 * 启动方法
+	 * 改变当前界面
 	 */
-	public void start() {
-		if(jPanel!=null) {
-			this.add(jPanel);
+	public void changePanel(String name) {
+		layout.show(mainJPanel, name);
+	}
+	/**
+	 * 游戏的启动方法
+	 */
+	public void startGame() {
+		gameJPanel = new GameMainJPanel();//新建界面
+		mainJPanel.add("game", gameJPanel);
+		if(mainJPanel!=null) {
+			this.add(mainJPanel);
 		}
 		if(keyListener !=null) {
 			this.addKeyListener(keyListener);
@@ -54,33 +72,25 @@ public class GameJFrame extends JFrame{
 		if(thead !=null) {
 			thead.start();//启动线程
 		}
-		this.setVisible(true);//显示界面
-//		如果jp是runnable的子类实体对象
-//		如果这个判定无法进入就是instanceof判定为false 那么jpanel没有实现runnable接口
-		if(this.jPanel instanceof Runnable) {
-//			已经做类型判定，强制类型转换不会出错
-			new Thread((Runnable)this.jPanel).start();
+		if(this.gameJPanel instanceof Runnable) {
+			new Thread((Runnable)this.gameJPanel).start();
 		}
 		
 	}
-	/* set注入：学习ssm后 通过set方法注入配置文件中读取的数据；将配置文件中的数据赋值为类的属性
-	 * 构造注入：需要配合构造方法
-	 * spring中ioc进行对象的自动生成，管理。
-	 */
-	public void setjPanel(JPanel jPanel) {
-		this.jPanel = jPanel;
+	public void setmainJPanel(JPanel jPanel) {
+		this.mainJPanel = jPanel;
 	}
 	public void setKeyListener(KeyListener keyListener) {
 		this.keyListener = keyListener;
-	}
-	public void setMouseMotionListener(MouseMotionListener mouseMotionListener) {
-		this.mouseMotionListener = mouseMotionListener;
 	}
 	public void setMouseListener(MouseListener mouseListener) {
 		this.mouseListener = mouseListener;
 	}
 	public void setThead(Thread thead) {
 		this.thead = thead;
+	}
+	public void setBeginJPanel(BeginJPanel beginJPanel) {
+		this.beginJPanel = beginJPanel;
 	}
 	
 }

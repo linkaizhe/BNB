@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -21,8 +22,18 @@ public class GameLoad {
 //	得到资源管理器
 	private static ElementManager em = ElementManager.getManager();
 	
-//	图片集合  使用map来进行存储     枚举类型配合移动(扩展)
+//	图片集合  使用map来进行存储
 	public static Map<String,ImageIcon> imgMap = new HashMap<>();
+	public static Map<String, List<String>> gameBasicMap = new HashMap<>();
+	
+//	单例模式
+	private static GameLoad gameLoad = null;
+	public static GameLoad getGameLoad() {
+		if(gameLoad == null) {//空值判定
+			gameLoad = new GameLoad();
+		}
+		return gameLoad;
+	}
 
 //	用户读取文件的类
 	private static Properties pro = new Properties();
@@ -62,25 +73,24 @@ public class GameLoad {
 	}
 	/**
 	 * @说明 加载图片代码
-	 * 加载图片 代码和图片之间差一个路径问题
 	 */
 	public static void loadImg() { //可以带参数 因为不同的关卡可能需要不同的图片资源
-		String texturl = "com/tedu/text/GameData.pro"; //文件的命名可以更加有规律
+		String imgurl = "com/tedu/text/Pro/GameData.pro"; //文件的命名可以更加有规律
 		ClassLoader classLoader = GameLoad.class.getClassLoader();
-		InputStream texts = classLoader.getResourceAsStream(texturl);
+		InputStream texts = classLoader.getResourceAsStream(imgurl);
 //		imgMap用于存放数据
 		pro.clear();
-		try {
-			pro.load(texts);
-			Set<Object> set = pro.keySet();//是一个set集合
-			for(Object o:set) {
-				String url = pro.getProperty(o.toString());
-				imgMap.put(o.toString(), new ImageIcon(url));
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			pro.load(texts); //暂时注释
+//			Set<Object> set = pro.keySet();//是一个set集合
+//			for(Object o:set) {
+//				String url = pro.getProperty(o.toString());
+//				imgMap.put(o.toString(), new ImageIcon(url));
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	/**
 	 * 加载玩家
