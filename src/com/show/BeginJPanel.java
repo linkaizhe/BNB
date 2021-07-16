@@ -9,9 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.controller.GameListener;
 import com.game.GameStart;
-import com.manager.GameLoad;
 
 public class BeginJPanel extends JPanel{
 	private ImageIcon img;

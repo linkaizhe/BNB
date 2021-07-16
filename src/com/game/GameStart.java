@@ -16,7 +16,7 @@ public class GameStart {
 		 * 实例化面板，注入到JFrame中
 		 */
 //		实例化监听
-		GameListener listener = new GameListener();
+//		GameListener listener = new GameListener();
 //		实例化主线程
 		GameThread th=new GameThread();
 //		注入
@@ -46,6 +46,7 @@ public class GameStart {
 	}
 	public static void startNewGame() {
 		GameListener.setGamePlaying(true);
+		gameFrame.setThead(new GameThread());
 		gameFrame.startGame();
 		changePanel("game");
 	}

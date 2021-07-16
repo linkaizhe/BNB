@@ -2,8 +2,6 @@ package com.show;
 
 import java.awt.CardLayout;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -61,7 +59,6 @@ public class GameJFrame extends JFrame{
 	 */
 	public void startGame() {
 		gameJPanel = new GameMainJPanel();//新建界面
-		thead = new Thread();//线程实例化
 		mainJPanel.add("game", gameJPanel);
 		if(mainJPanel!=null) {
 			this.add(mainJPanel);
