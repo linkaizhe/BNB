@@ -24,6 +24,7 @@ public class GameJFrame extends JFrame{
 	private JPanel mainJPanel; //显示的界面
 	private BeginJPanel beginJPanel;//游戏开始前的界面
 	private GameMainJPanel gameJPanel;//游戏主要界面
+	private EndJPanel endJPanel; //游戏结束界面
 	private KeyListener  keyListener;//键盘监听
 	private Thread thead = null;  //游戏主线程
 	private CardLayout layout;//布局
@@ -41,10 +42,16 @@ public class GameJFrame extends JFrame{
 		
 		this.mainJPanel = new JPanel();
 		this.setmainJPanel(mainJPanel);
+		
 		this.layout = new CardLayout();
 		this.mainJPanel.setLayout(layout);
+		
 		this.beginJPanel = new BeginJPanel();
 		this.mainJPanel.add("begin", beginJPanel);
+		
+		this.endJPanel = new EndJPanel();
+		this.mainJPanel.add("end", endJPanel);
+		
 		this.layout.show(mainJPanel, "begin");
 		this.setVisible(true);//显示界面
 	}
@@ -85,6 +92,9 @@ public class GameJFrame extends JFrame{
 	}
 	public void setBeginJPanel(BeginJPanel beginJPanel) {
 		this.beginJPanel = beginJPanel;
+	}
+	public void setEndJPanel(EndJPanel endJPanel) {
+		this.endJPanel = endJPanel;
 	}
 	
 }

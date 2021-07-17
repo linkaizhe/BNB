@@ -30,8 +30,8 @@ public class BeginJPanel extends JPanel{
 	}
 	private void init() {
 		
-		this.setSize(width,height);
-		this.setLayout(null);
+		this.setSize(width, height);
+		this.setLayout(null); //清空布局
 		
 		JLabel jLabel = new JLabel(img);
 		img.setImage(img.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
@@ -40,12 +40,13 @@ public class BeginJPanel extends JPanel{
 		
 //		单人模式按钮
 		JButton onePlayer = new JButton();
-		onePlayer.setIcon(imgone);
+		onePlayer.setIcon(imgone); //设置图片
 		onePlayer.setBounds(510, 300, 180, 60);
-		onePlayer.setBorderPainted(false);
-		onePlayer.setFocusPainted(false);
-		onePlayer.setContentAreaFilled(false);
-		onePlayer.addActionListener(new ActionListener() {
+		onePlayer.setBorderPainted(false); //移除悬浮特效
+		onePlayer.setFocusPainted(false); //移除焦点
+		onePlayer.setContentAreaFilled(false); //背景透明
+		onePlayer.addActionListener(new ActionListener() { //单击监听
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				GameStart.startNewGame();
@@ -60,9 +61,10 @@ public class BeginJPanel extends JPanel{
 		twoPlayer.setFocusPainted(false);
 		twoPlayer.setContentAreaFilled(false);
 		twoPlayer.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				GameStart.startNewGame();
+				GameStart.toEndJPanel(); //测试：跳转至游戏结束页面
 			}
 		});
 		
@@ -74,6 +76,7 @@ public class BeginJPanel extends JPanel{
 		gameIntroduce.setFocusPainted(false);
 		gameIntroduce.setContentAreaFilled(false);
 		gameIntroduce.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 //				GameListener.setTwoPlayer(true);

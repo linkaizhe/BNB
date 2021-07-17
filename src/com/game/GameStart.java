@@ -50,6 +50,10 @@ public class GameStart {
 		gameFrame.startGame();
 		changePanel("game");
 	}
+	public static void toEndJPanel() { //测试代码 后续删除
+		gameFrame.setThead(new GameThread());
+		changePanel("end");
+	}
 }
 
 /**
