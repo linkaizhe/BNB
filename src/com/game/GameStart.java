@@ -54,6 +54,10 @@ public class GameStart {
 		gameFrame.setThead(new GameThread());
 		changePanel("end");
 	}
+	public static void toIntroduce() {
+		gameFrame.setThead(new GameThread());
+		changePanel("intro");
+	}
 }
 
 /**

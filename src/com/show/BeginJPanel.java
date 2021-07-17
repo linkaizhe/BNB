@@ -49,6 +49,7 @@ public class BeginJPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+//				GameListener.setTwoPlayer(false);
 				GameStart.startNewGame();
 			}
 		});
@@ -79,8 +80,7 @@ public class BeginJPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-//				GameListener.setTwoPlayer(true);
-//				GameStart.startNewGame();
+				GameStart.toIntroduce();
 			}
 		});
 		
