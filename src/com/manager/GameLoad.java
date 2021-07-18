@@ -97,29 +97,6 @@ public class GameLoad {
 //		}
 	}
 	/**
-	  * 加载bgm
-	  */
-	 public static void AutoplayMusic(String locate)
-	 {
-	  try
-	  {
-	   File Path = new File(locate);
-	   if(Path.exists())
-	   {
-	    AudioInputStream audioInput = AudioSystem.getAudioInputStream(Path);
-	    Clip bgm = AudioSystem.getClip();
-	    bgm.open(audioInput);
-	    bgm.start();
-	    bgm.loop(Clip.LOOP_CONTINUOUSLY);//循环播放
-	   }
-	  }
-	  catch(Exception e)
-	  {
-	   e.printStackTrace();
-	  }
-	 }
-	 
-	/**
 	 * 加载玩家
 	 */
 	public static void loadPlay() {

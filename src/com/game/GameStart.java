@@ -1,5 +1,6 @@
 package com.game;
 
+import com.controller.BackgroundMusic;
 import com.controller.GameListener;
 import com.controller.GameThread;
 import com.show.GameJFrame;
@@ -25,6 +26,9 @@ public class GameStart {
 		gameFrame.setVisible(true);
 		gameFrame.setThead(th);
 		gameFrame.startGame();
+		
+		//加载BGM
+		BackgroundMusic.AutoplayMusic("music/bgm.wav");
 		
 	}
 	/**
