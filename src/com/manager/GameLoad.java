@@ -87,22 +87,22 @@ public class GameLoad {
 	 * @说明 加载图片代码
 	 */
 	public static void loadImg() { //可以带参数 因为不同的关卡可能需要不同的图片资源
-		String imgurl = "com/scnu/text/Pro/GameData.pro"; //文件的命名可以更加有规律
+		String imgurl = "com/text/Pro/GameData.pro"; //文件的命名可以更加有规律
 		ClassLoader classLoader = GameLoad.class.getClassLoader();
 		InputStream texts = classLoader.getResourceAsStream(imgurl);
 //		imgMap用于存放数据
 		pro.clear();
-//		try {
-//			pro.load(texts); //暂时注释
-//			Set<Object> set = pro.keySet();//是一个set集合
-//			for(Object o:set) {
-//				String url = pro.getProperty(o.toString());
-//				imgMap.put(o.toString(), new ImageIcon(url));
-//			}
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			pro.load(texts);
+			Set<Object> set = pro.keySet();//是一个set集合
+			for(Object o:set) {
+				String url = pro.getProperty(o.toString());
+				imgMap.put(o.toString(), new ImageIcon(url));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}	
 	/**
 	 * 加载玩家
@@ -117,7 +117,7 @@ public class GameLoad {
 		em.addElement(play, GameElement.PLAY);
 	}
 	public static ElementObj getObj(String str) {
-		System.out.println("str:"+str);
+//		System.out.println("str:"+str);
 		try {
 			Class<?> class1 = objMap.get(str);
 			Object newInstance = class1.newInstance();
@@ -141,7 +141,7 @@ public class GameLoad {
 	 */
 	private static Map<String,Class<?>> objMap=new HashMap<>();
 	public static void loadObj() {
-		String texturl= "com/tedu/text/obj.pro";//文件的命名可以更加有规律
+		String texturl= "com/text/Pro/obj.pro";//文件的命名可以更加有规律
 		ClassLoader classLoader = GameLoad.class.getClassLoader();
 		InputStream texts = classLoader.getResourceAsStream(texturl);
 		pro.clear();

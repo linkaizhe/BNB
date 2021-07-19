@@ -36,7 +36,7 @@ public class GameListener implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// 拿到玩家集合
-		System.out.println("按下"+e.getKeyCode()); //寻找各个按键的对应值
+//		System.out.println("按下"+e.getKeyCode()); //寻找各个按键的对应值
 		int key = e.getKeyCode();
 		if(set.contains(key)) { //判定集合中是否已经存在，包含的这个对象
 			return; // 如果包含则直接结束这个方法
