@@ -37,11 +37,9 @@ public class GameStart {
 	public static void changePanel(String panelName) {
 		if(panelName == "game") {
 			GameListener.setGamePlaying(true);
-			
 		}
 		else {
 			GameListener.setGamePlaying(false);
-			
 		}
 		gameFrame.changePanel(panelName);
 		//刷新

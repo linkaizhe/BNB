@@ -1,6 +1,5 @@
 package com.manager;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
@@ -10,12 +9,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 
 import com.element.ElementObj;
+import com.element.Maps;
 
 /**
  * @说明 加载器(工具：用户读取配置文件的工具)工具类，大多数提供的是static方法
@@ -47,7 +44,7 @@ public class GameLoad {
 	 */
 	public static void MapLoad(int mapId) {
 //		得到了文件路径
-		String mapName= "com/tedu/text/"+mapId+".map";
+		String mapName= "com/text/Map/"+mapId+".map";
 //		使用io流来获取文件对象   得到类加载器
 		ClassLoader classLoader = GameLoad.class.getClassLoader();
 		InputStream maps = classLoader.getResourceAsStream(mapName);
@@ -62,12 +59,23 @@ public class GameLoad {
 			Enumeration<?> names = pro.propertyNames();
 			while(names.hasMoreElements()) {//获取是无序的
 //				这样的迭代都有一个问题：一次迭代一个元素。
-				String key=names.nextElement().toString();
+/*				String key=names.nextElement().toString();
+				System.out.println("key:"+key);
 				String [] arrs=pro.getProperty(key).split(";");
+				System.out.println("arrs[]:"+arrs);
 				for(int i=0;i<arrs.length;i++) {
 					ElementObj obj= getObj("map");  
 					ElementObj element = obj.createElement(key+","+arrs[i]);
 					em.addElement(element, GameElement.MAPS);
+				}*/
+				String key = names.nextElement().toString();
+				pro.getProperty(key);
+				
+				String [] arrs=pro.getProperty(key).split(";");
+				for(int i=0;i<arrs.length;i++) {
+					ElementObj element = new Maps().createElement(key+","+arrs[i]);
+					em.addElement(element, GameElement.MAPS);
+					
 				}
 			}	
 		} catch (IOException e) {
@@ -79,7 +87,7 @@ public class GameLoad {
 	 * @说明 加载图片代码
 	 */
 	public static void loadImg() { //可以带参数 因为不同的关卡可能需要不同的图片资源
-		String imgurl = "com/tedu/text/Pro/GameData.pro"; //文件的命名可以更加有规律
+		String imgurl = "com/scnu/text/Pro/GameData.pro"; //文件的命名可以更加有规律
 		ClassLoader classLoader = GameLoad.class.getClassLoader();
 		InputStream texts = classLoader.getResourceAsStream(imgurl);
 //		imgMap用于存放数据
@@ -95,7 +103,7 @@ public class GameLoad {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-	}
+	}	
 	/**
 	 * 加载玩家
 	 */
@@ -109,6 +117,7 @@ public class GameLoad {
 		em.addElement(play, GameElement.PLAY);
 	}
 	public static ElementObj getObj(String str) {
+		System.out.println("str:"+str);
 		try {
 			Class<?> class1 = objMap.get(str);
 			Object newInstance = class1.newInstance();

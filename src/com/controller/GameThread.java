@@ -40,7 +40,7 @@ public class GameThread extends Thread{
 	 */
 	private void gameLoad() {
 //		GameLoad.loadImg(); // 暂时注释
-//		GameLoad.MapLoad(5); // 加载地图 可以为变量 随机地图
+		GameLoad.MapLoad(1); // 加载地图 可以为变量 随机地图
 //		加载主角
 //		GameLoad.loadPlay(); //可以带参数 单人或者多人
 //		加载敌人NPC等
