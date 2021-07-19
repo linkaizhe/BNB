@@ -17,12 +17,13 @@ public class GameStart {
 		 * 实例化面板，注入到JFrame中
 		 */
 //		实例化监听
-//		GameListener listener = new GameListener();
+		GameListener listener = new GameListener();
 //		实例化主线程
 		GameThread th=new GameThread();
-//		注入
-//		gameFrame.setKeyListener(listener);
+
 		gameFrame = new GameJFrame();
+//		注入
+		gameFrame.setKeyListener(listener);
 		gameFrame.setVisible(true);
 		gameFrame.setThead(th);
 		gameFrame.startGame();
