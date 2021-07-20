@@ -44,7 +44,7 @@ public class GameThread extends Thread{
 //		加载主角
 		GameLoad.loadPlay(); //可以带参数 单人或者多人
 //		加载敌人NPC等
-		
+		GameLoad.loadNpc();
 //		全部加载完成 游戏启动
 //		load();
 	}

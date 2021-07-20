@@ -109,12 +109,22 @@ public class GameLoad {
 	 */
 	public static void loadPlay() {
 		loadObj();
-		String playStr="200,200,up";//没有放到配置文件中
+		String playStr="75,60,up";//没有放到配置文件中
 		ElementObj obj= getObj("play");  //因为我们是依靠的字符串来读取和创建对象
 //		这个字符串是key  也是 唯一 id 相当于为 每个类起啦一个唯一的id名称
 //		这个字符串名称一定要和 obj.pro中的key相同
 		ElementObj play = obj.createElement(playStr);
 		em.addElement(play, GameElement.PLAY);
+	}
+	/** 
+	 * 加载NPC
+	 */
+	public static void loadNpc() {
+		loadObj();
+		String npcStr = "675,660,down";
+		ElementObj obj = getObj("npc");
+		ElementObj npc = obj.createElement(npcStr);
+		em.addElement(npc, GameElement.NPC);
 	}
 	public static ElementObj getObj(String str) {
 //		System.out.println("str:"+str);
