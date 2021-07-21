@@ -4,6 +4,8 @@ import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 
+import com.manager.ElementManager;
+import com.manager.GameElement;
 import com.manager.GameLoad;
 
 public class NonPlayer extends ElementObj{
@@ -12,7 +14,12 @@ public class NonPlayer extends ElementObj{
 	private boolean nup = false;
 	private boolean nright = false;
 	private boolean ndown = false;
+	private boolean pkType = false;
 	private String nfx = "ndown";
+	
+	private int lastX;
+	private int lastY;
+	private String refuseMove;
 
 	public NonPlayer() {}
 	public NonPlayer(int x, int y, int w, int h, ImageIcon icon) {
@@ -35,12 +42,67 @@ public class NonPlayer extends ElementObj{
 	public void showElement(Graphics g) {
 		g.drawImage(this.getIcon().getImage(), this.getX(), this.getY(), this.getW(), this.getH(), null);
 	}
-	
+	public void keyClick(boolean bl,int key){//只有按下或者松开才会调用此方法
+		if(bl){
+			switch(key){
+				case 10: this.pkType = true; break;
+				case 37: this.nright = false;this.ndown = false;this.nup = false;
+					this.nleft = true;this.nfx = "nleft"; break;
+				case 38: this.ndown = false;this.nright = false;this.nleft = false;
+					this.nup = true;this.nfx = "nup"; break;
+				case 39: this.nleft = false;this.nup = false;this.ndown = false;
+					this.nright = true;this.nfx = "nright"; break;
+				case 40: this.nup = false;this.nright = false;this.nleft = false;
+					this.ndown = true;this.nfx = "ndown"; break;
+				}
+			}else{
+				switch(key){
+				case 10:this.pkType = false; break;
+				case 37:this.nleft = false; break;
+				case 38:this.nup = false; break;
+				case 39:this.nright = false; break;
+				case 40:this.ndown = false; break;
+				}
+			}
+			if(refuseMove == nfx) {
+				this.nleft = false;
+				this.nup = false;
+				this.nright = false;
+				this.ndown = false;
+			}else {
+				refuseMove="";
+			}
+		}
+		@Override
+		public void move(){
+			lastX=this.getX();
+			lastY=this.getY();
+			if(this.nleft && this.getX()>0){
+				this.setX(this.getX()-5);
+			}
+			if(this.nup&&this.getY()>0){
+				this.setY(this.getY()-5);
+			}
+			if(this.nright&&this.getX()<1200-this.getW()-50){
+				this.setX(this.getX()+5);
+			}
+			if(this.ndown&&this.getY()<900-this.getH()-70){
+				this.setY(this.getY()+5);
+			}
+		}
 	@Override
 	protected void updateImage(long time) {
 		this.setIcon(GameLoad.imgMap.get(nfx));
 	}
-	
+	@Override
+	protected void add(long gameTime) {
+		if(!this.pkType) {
+			return;
+		}
+		this.pkType=false;
+		ElementObj element = new Bubble(gameTime).createElement(this.toString());
+		ElementManager.getManager().addElement(element, GameElement.BUBBLE);
+	}
 	@Override
 	public String toString() {
 		int x = this.getX();
@@ -52,5 +114,11 @@ public class NonPlayer extends ElementObj{
 		case "ndown" : break;
 		}
 		return "x:"+x+",y:"+y+",f:"+this.nfx;
+	}
+	@Override
+	public void moveback() {
+		this.setX(lastX);
+		this.setY(lastY);
+		refuseMove=nfx;
 	}
 }

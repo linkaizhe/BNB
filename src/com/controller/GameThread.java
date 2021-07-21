@@ -66,6 +66,9 @@ public class GameThread extends Thread{
 			if(ElementPK(play, maps) || ElementPK(play, npc)) {
 				play.get(0).moveback();
 			}
+			if(ElementPK(npc, maps)) {
+				npc.get(0).moveback();
+			}
 			
 			gameTime++;//唯一的时间控制
 			try {

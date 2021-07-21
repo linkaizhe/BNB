@@ -57,22 +57,22 @@ public class Play extends ElementObj{
 	if(bl){
 		switch(key){
 			case 32:this.pkType=true; break;
-			case 37:this.right=false;this.down=false;this.up=false;
+			case 65:this.right=false;this.down=false;this.up=false;
 				this.left=true;this.fx="left";break;
-			case 38:this.down=false;this.right=false;this.left=false;
+			case 87:this.down=false;this.right=false;this.left=false;
 				this.up=true;this.fx="up";break;
-			case 39:this.left=false;this.up=false;this.down=false;
+			case 68:this.left=false;this.up=false;this.down=false;
 				this.right=true;this.fx="right";break;
-			case 40:this.up=false;this.right=false;this.left=false;
+			case 83:this.up=false;this.right=false;this.left=false;
 				this.down=true;this.fx="down";break;
 			}
 		}else{
 			switch(key){
 			case 32:this.pkType=false;break;
-			case 37:this.left=false;break;
-			case 38:this.up=false;break;
-			case 39:this.right=false;break;
-			case 40:this.down=false;break;
+			case 65:this.left=false;break;
+			case 87:this.up=false;break;
+			case 68:this.right=false;break;
+			case 83:this.down=false;break;
 			}
 		}
 		if(refuseMove==fx) {

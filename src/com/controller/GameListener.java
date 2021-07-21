@@ -46,6 +46,10 @@ public class GameListener implements KeyListener{
 		for(ElementObj obj:play) {
 			obj.keyClick(true, e.getKeyCode());
 		}
+		List<ElementObj> npc = em.getElementsByKey(GameElement.NPC);
+		for(ElementObj obj1:npc) {
+			obj1.keyClick(true, e.getKeyCode());
+		}
 	}
 	/**
 	 * 松开
@@ -59,6 +63,10 @@ public class GameListener implements KeyListener{
 		List<ElementObj> play = em.getElementsByKey(GameElement.PLAY);
 		for(ElementObj obj:play) {
 			obj.keyClick(false, e.getKeyCode());
+		}
+		List<ElementObj> npc = em.getElementsByKey(GameElement.NPC);
+		for(ElementObj obj1:npc) {
+			obj1.keyClick(false, e.getKeyCode());
 		}
 	}
 	public static boolean isGamePlaying() {
