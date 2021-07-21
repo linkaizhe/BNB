@@ -5,6 +5,9 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import com.manager.ElementManager;
+import com.manager.GameElement;
+
 public class Maps extends ElementObj{
 	
 	private boolean BreakWall;
@@ -23,7 +26,7 @@ public class Maps extends ElementObj{
 		switch(arr[0]) {
 		case "ORANGE": icon=new ImageIcon("image/Characters/box_01.png"); break;
 		case "RED": icon=new ImageIcon("image/Characters/box_02.png"); break;
-		case "GREEN": icon=new ImageIcon("image/Characters/box_03.png"); break;
+//		case "GREEN": icon=new ImageIcon("image/Characters/box_03.png"); break;
 		case "BOX": icon=new ImageIcon("image/Characters/box_04.png"); break;
 		case "DARKBLUE": icon=new ImageIcon("image/Characters/box_05.png"); break;
 		case "BLUE": icon=new ImageIcon("image/Characters/box_06.png"); break;
@@ -31,7 +34,10 @@ public class Maps extends ElementObj{
 		case "JINGGAO": icon=new ImageIcon("image/Characters/box_08.png"); break;
 		case "GREY": icon=new ImageIcon("image/Characters/box_09.png"); break;
 		case "BOXTWO": icon=new ImageIcon("image/Characters/box_10.png"); break;
-		case "FLOOR": icon=new ImageIcon("image/Characters/floor.png"); break;
+//		case "FLOOR": 
+//			ElementObj element = new Floor().createElement(this.getX()+","+this.getY());
+//			ElementManager.getManager().addElement(element, GameElement.FLOOR);
+//			break;
 		case "TREE": icon=new ImageIcon("image/Characters/tree.png"); break;
 		case "YELLOWHOUSE": icon=new ImageIcon("image/Characters/yellowhouse.png"); break;
 		case "BORDER": icon=new ImageIcon("image/Characters/border.png"); break;

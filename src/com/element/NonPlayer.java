@@ -25,8 +25,8 @@ public class NonPlayer extends ElementObj{
 		this.setX(Integer.parseInt(split[0]));
 		this.setY(new Integer(split[1]));
 		ImageIcon icon2 = GameLoad.imgMap.get(split[2]);
-		this.setW(40);
-		this.setH(60);
+		this.setW(35);
+		this.setH(40);
 		this.setIcon(icon2);
 		return this;
 	}

@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 
 import com.element.ElementObj;
 import com.element.Maps;
+import com.element.Floor;
 
 /**
  * @说明 加载器(工具：用户读取配置文件的工具)工具类，大多数提供的是static方法
@@ -43,6 +44,30 @@ public class GameLoad {
 	 * @param mapId  文件编号 文件id
 	 */
 	public static void MapLoad(int mapId) {
+		String mapName1= "com/text/Map/floor.map";
+//		使用io流来获取文件对象   得到类加载器
+		ClassLoader classLoader1 = GameLoad.class.getClassLoader();
+		InputStream maps1 = classLoader1.getResourceAsStream(mapName1);
+		try {
+			pro.clear();
+			pro.load(maps1);
+			Enumeration<?> names1 = pro.propertyNames();
+			while(names1.hasMoreElements()) {
+				String key = names1.nextElement().toString();
+				pro.getProperty(key);
+				
+				String [] arrs1=pro.getProperty(key).split(";");
+				for(int i=0;i<arrs1.length;i++) {
+					ElementObj element2 = new Floor().createElement(key+","+arrs1[i]);
+					em.addElement(element2, GameElement.FLOOR);
+				}
+			}
+		} catch (IOException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
+		
+		
 //		得到了文件路径
 		String mapName= "com/text/Map/"+mapId+".map";
 //		使用io流来获取文件对象   得到类加载器
@@ -109,7 +134,7 @@ public class GameLoad {
 	 */
 	public static void loadPlay() {
 		loadObj();
-		String playStr="75,60,up";//没有放到配置文件中
+		String playStr="75,75,up";//没有放到配置文件中
 		ElementObj obj= getObj("play");  //因为我们是依靠的字符串来读取和创建对象
 //		这个字符串是key  也是 唯一 id 相当于为 每个类起啦一个唯一的id名称
 //		这个字符串名称一定要和 obj.pro中的key相同
@@ -121,7 +146,7 @@ public class GameLoad {
 	 */
 	public static void loadNpc() {
 		loadObj();
-		String npcStr = "675,660,down";
+		String npcStr = "677,675,down";
 		ElementObj obj = getObj("npc");
 		ElementObj npc = obj.createElement(npcStr);
 		em.addElement(npc, GameElement.NPC);

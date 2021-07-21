@@ -30,7 +30,7 @@ public class Play extends ElementObj{
 		this.setY(new Integer(split[1]));
 		ImageIcon icon2 = GameLoad.imgMap.get(split[2]);
 		this.setW(40);
-		this.setH(60);
+		this.setH(40);
 		this.setIcon(icon2);
 		return this;
 	}
@@ -75,7 +75,7 @@ public class Play extends ElementObj{
 		if(this.right&&this.getX()<1200-this.getW()-50){
 			this.setX(this.getX()+5);
 		}
-		if(this.down&&this.getY()<900-this.getH()-70){
+		if(this.down&&this.getY()<900-this.getH()-20){
 			this.setY(this.getY()+5);
 		}
 	}

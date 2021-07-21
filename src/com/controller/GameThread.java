@@ -59,12 +59,12 @@ public class GameThread extends Thread{
 		long gameTime = 0L; //int类型也可以
 		while(true) { // 预留扩展 true可以变为变量，用于控制关卡结束等
 			Map<GameElement, List<ElementObj>> all = em.getGameElements();
-			List<ElementObj> enemys = em.getElementsByKey(GameElement.ENEMY);
-			List<ElementObj> files = em.getElementsByKey(GameElement.PLAYFILE);
+			List<ElementObj> play = em.getElementsByKey(GameElement.PLAY);
 			List<ElementObj> maps = em.getElementsByKey(GameElement.MAPS);
+			List<ElementObj> npc = em.getElementsByKey(GameElement.NPC);
 			moveAndUpdate(all, gameTime); //游戏元素自动化方法
-			ElementPK(enemys, files);
-			ElementPK(maps, files);
+			ElementPK(play, npc);
+			ElementPK(maps, play);
 			
 			gameTime++;//唯一的时间控制
 			try {
@@ -79,16 +79,16 @@ public class GameThread extends Thread{
 	public void ElementPK(List<ElementObj> listA, List<ElementObj> listB) {
 //		使用双循环进行一对一判定，如果为真，就设置2个对象的死亡状态
 		for(int i=0;i<listA.size();i++) {
-			ElementObj enemy = listA.get(i);
+			ElementObj obj1 = listA.get(i);
 			for(int j=0;j<listB.size();j++) {
-				ElementObj file = listB.get(j);
-				if(enemy.pk(file)) {
+				ElementObj obj2 = listB.get(j);
+				if(obj1.pk(obj2)) {
 //					问题：BOSS无法一枪一个
 //					将setLive(false)变为一个受攻击方法，还可以传入另外一个对象的攻击力
 //					当受攻击方法执行时，如果血量减为0再进行设置生存为false
 //					扩展  需要完成
-					enemy.setLive(false);
-					file.setLive(false);
+					obj1.setLive(false);
+					obj2.setLive(false);
 					break;
 				}
 			}

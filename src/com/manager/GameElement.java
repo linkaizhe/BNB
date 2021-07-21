@@ -9,7 +9,7 @@ public enum GameElement {
 	 * PLAYFILE 子弹 
 	 * 等等
 	 */
-	MAPS,PLAY,ENEMY,BOSS,PLAYFILE,DIE,NPC;  //枚举类型的顺序是 声明的顺序
+	FLOOR,MAPS,PLAY,ENEMY,BOSS,PLAYFILE,DIE,NPC;  //枚举类型的顺序是 声明的顺序
 //	我们定义的枚举类型，在编译的时候，虚拟机会自动帮助生成class文件，并且会
 //	加载很多的代码和方法
 //	private GameElement() {
