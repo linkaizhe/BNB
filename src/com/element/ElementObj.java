@@ -73,7 +73,7 @@ public abstract class ElementObj {
 //		再移动
 		move();
 //		再发射子弹
-//		add(gameTime);
+		add(gameTime);
 	}
 	protected void updateImage(long time) {}
 	protected void add(long gameTime) {}

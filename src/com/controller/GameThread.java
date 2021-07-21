@@ -87,8 +87,8 @@ public class GameThread extends Thread{
 //					将setLive(false)变为一个受攻击方法，还可以传入另外一个对象的攻击力
 //					当受攻击方法执行时，如果血量减为0再进行设置生存为false
 //					扩展  需要完成
-					obj1.setLive(false);
-					obj2.setLive(false);
+//					obj1.setLive(false);
+//					obj2.setLive(false);
 					break;
 				}
 			}
