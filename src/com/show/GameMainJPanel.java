@@ -29,6 +29,7 @@ public class GameMainJPanel extends JPanel implements Runnable{
 
 	public void init() {
 		em = ElementManager.getManager();//得到元素管理器对象
+		
 	}
 	/**
 	 * paint方法是进行绘画元素的。

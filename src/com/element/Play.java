@@ -1,7 +1,6 @@
 package com.element;
 
 import java.awt.Graphics;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
@@ -24,6 +23,11 @@ public class Play extends ElementObj{
 //	变量专门用来记录当前主角面向的方向，默认为up
 	private boolean pkType= false;//放置泡泡状态true false不放置
 	private String fx="down";
+	
+	private int lastX;
+	private int lastY;
+	private String refuseMove;
+	
 	public Play(){}
 	public Play(int x, int y, int w, int h, ImageIcon icon) {
 		super(x, y, w, h, icon);	
@@ -71,9 +75,19 @@ public class Play extends ElementObj{
 			case 40:this.down=false;break;
 			}
 		}
+		if(refuseMove==fx) {
+			this.left=false;
+			this.up=false;
+			this.right=false;
+			this.down=false;
+		}else {
+			refuseMove="";
+		}
 	}
 	@Override
 	public void move(){
+		lastX=this.getX();
+		lastY=this.getY();
 		if(this.left && this.getX()>0){
 			this.setX(this.getX()-5);
 		}
@@ -117,8 +131,13 @@ public class Play extends ElementObj{
 			case "right":break;
 			case "down":break;
 		}
-		  
 		return "x:"+x+",y:"+y+",f:"+this.fx;
 	}
-	   
+	
+	@Override
+	public void moveback() {
+		this.setX(lastX);
+		this.setY(lastY);
+		refuseMove=fx;
+	}
 }

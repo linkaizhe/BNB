@@ -102,6 +102,10 @@ public abstract class ElementObj {
 		return this.getRectangle().intersects(obj.getRectangle());
 	}
 	/**
+	 * @说明 碰撞后返回方法
+	 */
+	public void moveback() {}
+	/**
 	 * 只要是VO类(值对象) 就要为属性生成get和set方法
 	 */
 	public int getX() {

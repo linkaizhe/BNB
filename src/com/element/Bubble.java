@@ -1,7 +1,6 @@
 package com.element;
 
 import java.awt.Graphics;
-import java.util.Date;
 
 import javax.swing.ImageIcon;
 
@@ -41,28 +40,36 @@ public class Bubble extends ElementObj{
 			String[] split2 = str1.split(":");//0下标是x,y,f 1下标是值
 			switch(split2[0]) {
 			case "x": 
-				int xx=Integer.parseInt(split2[1])-35;
+				int xx=Integer.parseInt(split2[1])-15;
 				if(xx%40!=0) {
-					xx/=40;
-					xx*=40;
-					if(xx%40>=20)
+					if(xx%40>=20) {
+						xx/=40;
+						xx*=40;
 						this.setX(xx+75);
-					else
+					}
+					else {
+						xx/=40;
+						xx*=40;
 						this.setX(xx+35);
+					}
 				}
 				this.setX(xx+35);
 				break;
 			case "y": 
-				int yy=Integer.parseInt(split2[1])-35;
+				int yy=Integer.parseInt(split2[1])-15;
 				if(yy%40!=0) {
-					yy/=40;
-					yy*=40;
-					if(yy%40>=20)
+					if(yy%40>=20) {
+						yy/=40;
+						yy*=40;
 						this.setY(yy+75);
-					else
+					}
+					else {
+						yy/=40;
+						yy*=40;
 						this.setY(yy+35);
+					}
 				}
-				this.setY(yy+75);
+				this.setY(yy+35);
 				break;
 			}
 		}

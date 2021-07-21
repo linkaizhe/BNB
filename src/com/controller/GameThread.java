@@ -63,8 +63,9 @@ public class GameThread extends Thread{
 			List<ElementObj> maps = em.getElementsByKey(GameElement.MAPS);
 			List<ElementObj> npc = em.getElementsByKey(GameElement.NPC);
 			moveAndUpdate(all, gameTime); //游戏元素自动化方法
-			ElementPK(play, npc);
-			ElementPK(maps, play);
+			if(ElementPK(play, maps) || ElementPK(play, npc)) {
+				play.get(0).moveback();
+			}
 			
 			gameTime++;//唯一的时间控制
 			try {
@@ -76,7 +77,7 @@ public class GameThread extends Thread{
 		}
 	}
 	
-	public void ElementPK(List<ElementObj> listA, List<ElementObj> listB) {
+	public boolean ElementPK(List<ElementObj> listA, List<ElementObj> listB) {
 //		使用双循环进行一对一判定，如果为真，就设置2个对象的死亡状态
 		for(int i=0;i<listA.size();i++) {
 			ElementObj obj1 = listA.get(i);
@@ -89,10 +90,11 @@ public class GameThread extends Thread{
 //					扩展  需要完成
 //					obj1.setLive(false);
 //					obj2.setLive(false);
-					break;
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 	
 //	游戏元素自动化方法

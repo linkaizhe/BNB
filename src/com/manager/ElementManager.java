@@ -28,6 +28,8 @@ public class ElementManager {
 	}
 //	添加元素(多半由加载器调用)
 	public void addElement(ElementObj obj,GameElement ge) {
+		if(ge.toString()=="PLAY" && !gameElements.get(ge).isEmpty()) return;
+		if(ge.toString()=="NPC" && !gameElements.get(ge).isEmpty()) return;
 		gameElements.get(ge).add(obj);//添加对象到集合中，按key值就行存储
 	}
 //	依据key返回 list集合，取出某一类元素
