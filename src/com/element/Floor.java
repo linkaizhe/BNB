@@ -17,6 +17,20 @@ public class Floor extends ElementObj{
 	public ElementObj createElement(String str) {
 		String []arr=str.split(",");
 		ImageIcon icon=null;
+		if(arr[0].equalsIgnoreCase("BIG")){
+			icon=new ImageIcon("image/Characters/BigBorder.png");
+			Destroy=false;
+			int x=Integer.parseInt(arr[1]);
+			int y=Integer.parseInt(arr[2]);
+			int w=icon.getIconWidth();
+			int h=icon.getIconHeight();
+			this.setH(h);
+			this.setW(w);
+			this.setX(x);
+			this.setY(y);
+			this.setIcon(icon);
+			return this;
+		}
 		icon=new ImageIcon("image/Characters/box_03.png");
 		int x=Integer.parseInt(arr[1]);
 		int y=Integer.parseInt(arr[2]);
@@ -25,7 +39,7 @@ public class Floor extends ElementObj{
 		
 		int width=w*40/32;
         int height=h*40/32;
-        Image img=icon.getImage().getScaledInstance(width, height, Image.SCALE_FAST);//第三个值可以去查api是图片转化的方式
+        Image img=icon.getImage().getScaledInstance(width, height, Image.SCALE_FAST);
         ImageIcon icon2=new ImageIcon(img);
 		x=x*40/32+35;
 		y=y*40/32+35;

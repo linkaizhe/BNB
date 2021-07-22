@@ -1,7 +1,6 @@
 package com.element;
 
 import java.awt.Graphics;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,10 +23,6 @@ public class Play extends ElementObj{
 	protected int changeDirectionCount=0;
 	protected boolean Ischange=false;
 		
-		
-//	图片集合 使用map进行存储
-	private Map<String,ImageIcon> imgMap;
-//	变量专门用来记录当前主角面向的方向，默认为up
 	private boolean pkType= false;//放置泡泡状态true false不放置
 	private String fx="down";
 	
@@ -113,20 +108,14 @@ public class Play extends ElementObj{
 	  this.setIcon(GameLoad.imgMap.get(fx));
 	}
 
-//	private long filetime=0;//filetime和传入时间gameTime进行比较，赋值等操作运算，控制子弹间隔
 	@Override
-	protected void add(long gameTime) {//有了时间就可以进行控制
-		if(!this.pkType) {//如果是不发射状态 就直接return
+	protected void add(long gameTime) {
+		if(!this.pkType) {
 			return;
 		}
-		this.pkType=false;//按一次，发射一个子弹。拼手速(也可以增加变量来控制)
-		//当构造一个类时需要做比较多的工作 可以选择一种方法：使用小工厂
-		//将构造对象的多个步骤进行封装成为一个方法
-		//传递一个固定格式 {x:3,y:5}
-		ElementObj element = new Bubble(gameTime).createElement(this.toString());//返回对象实体 初始化数据
-		//装入到集合中
+		this.pkType=false;
+		ElementObj element = new Bubble(gameTime).createElement(this.toString());
 		ElementManager.getManager().addElement(element, GameElement.BUBBLE);
-		//如果要控制子弹速度等等。。。还需要代码编写
 	}
 	@Override
 	public String toString() {

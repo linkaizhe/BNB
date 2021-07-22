@@ -103,5 +103,7 @@ public class GameJFrame extends JFrame{
 	public void setIntroJPanel(IntroJPanel introJPanel) {
 		this.introJPanel = introJPanel;
 	}
-	
+	public void stopThead() {
+		this.thead.stop();
+	}
 }

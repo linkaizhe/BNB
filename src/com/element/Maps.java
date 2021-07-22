@@ -11,9 +11,6 @@ import com.manager.GameElement;
 
 public class Maps extends ElementObj{
 	
-	private boolean BreakWall;
-	private String name;
-	
 	@Override
 	public void showElement(Graphics g) {
 		g.drawImage(this.getIcon().getImage(), this.getX(), this.getY(),
@@ -27,7 +24,6 @@ public class Maps extends ElementObj{
 		switch(arr[0]) {
 		case "ORANGE": icon=new ImageIcon("image/Characters/box_01.png");Destroy=true; break;
 		case "RED": icon=new ImageIcon("image/Characters/box_02.png");Destroy=true; break;
-//		case "GREEN": icon=new ImageIcon("image/Characters/box_03.png"); break;
 		case "BOX": icon=new ImageIcon("image/Characters/box_04.png");Destroy=true; break;
 		case "DARKBLUE": icon=new ImageIcon("image/Characters/box_05.png");Destroy=true; break;
 		case "BLUE": icon=new ImageIcon("image/Characters/box_06.png"); Destroy=true;break;
@@ -35,10 +31,6 @@ public class Maps extends ElementObj{
 		case "JINGGAO": icon=new ImageIcon("image/Characters/box_08.png");Destroy=true; break;
 		case "GREY": icon=new ImageIcon("image/Characters/box_09.png");Destroy=true; break;
 		case "BOXTWO": icon=new ImageIcon("image/Characters/box_10.png");Destroy=true; break;
-//		case "FLOOR": 
-//			ElementObj element = new Floor().createElement(this.getX()+","+this.getY());
-//			ElementManager.getManager().addElement(element, GameElement.FLOOR);
-//			break;
 		case "TREE": icon=new ImageIcon("image/Characters/tree.png");Destroy=false; break;
 		case "YELLOWHOUSE": icon=new ImageIcon("image/Characters/yellowhouse.png");Destroy=false; break;
 		case "BORDER": icon=new ImageIcon("image/Characters/border.png"); Destroy=false;break;
@@ -51,7 +43,7 @@ public class Maps extends ElementObj{
 		
 		int width=w*40/32;
         int height=h*40/32;
-        Image img=icon.getImage().getScaledInstance(width, height, Image.SCALE_FAST);//第三个值可以去查api是图片转化的方式
+        Image img=icon.getImage().getScaledInstance(width, height, Image.SCALE_FAST);
         ImageIcon icon2=new ImageIcon(img);
 		x=x*40/32+35;
 		y=y*40/32+35;
@@ -71,14 +63,11 @@ public class Maps extends ElementObj{
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
 			Random ran=new Random();
 			int x=ran.nextInt(10);
-			ElementObj element = new Things().createElement(this.getX()+","+this.getY()+","+x);//返回对象实体 初始化数据
-		//装入到集合中
-
+			ElementObj element = new Things().createElement(this.getX()+","+this.getY()+","+x);
 		    ElementManager.getManager().addElement(element, GameElement.THINGS);
 		}
 	}

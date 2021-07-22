@@ -1,9 +1,7 @@
 package com.element;
 
 import java.awt.Graphics;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.ImageIcon;
 
@@ -12,9 +10,6 @@ import com.manager.GameElement;
 
 public class Bubble extends ElementObj{
 
-	private int power=1;//威力
-	private int sum=1;//数量
-	private ImageIcon icon;
 	private static int Width=40;
 	private static int Height=40;
 	private long beginTime;
@@ -102,7 +97,6 @@ public class Bubble extends ElementObj{
 		ElementManager.getManager().addElement(element3, GameElement.DIE);
 		ElementManager.getManager().addElement(element4, GameElement.DIE);
 		
-		Map<GameElement, List<ElementObj>> all = ElementManager.getManager().getGameElements();
 		List<ElementObj> maps = ElementManager.getManager().getElementsByKey(GameElement.MAPS);
 		List<ElementObj> bubbledie = ElementManager.getManager().getElementsByKey(GameElement.DIE);
 		for(int i=0;i<maps.size();i++) {

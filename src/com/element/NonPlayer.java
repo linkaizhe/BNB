@@ -1,21 +1,28 @@
 package com.element;
 
 import java.awt.Graphics;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
+import com.game.GameStart;
 import com.manager.ElementManager;
 import com.manager.GameElement;
 import com.manager.GameLoad;
 
 public class NonPlayer extends ElementObj{
 	
+	public final static int ASPEED = 5;
 	private boolean nleft = false;
 	private boolean nup = false;
 	private boolean nright = false;
 	private boolean ndown = false;
 	private boolean pkType = false;
 	private String nfx = "ndown";
+	protected int speed=ASPEED;//移动速度
+	protected int changeDirectionCount=0;
+	protected boolean Ischange=false;
 	
 	private int lastX;
 	private int lastY;
@@ -78,16 +85,16 @@ public class NonPlayer extends ElementObj{
 			lastX=this.getX();
 			lastY=this.getY();
 			if(this.nleft && this.getX()>0){
-				this.setX(this.getX()-5);
+				this.setX(this.getX()-speed);
 			}
 			if(this.nup&&this.getY()>0){
-				this.setY(this.getY()-5);
+				this.setY(this.getY()-speed);
 			}
 			if(this.nright&&this.getX()<1200-this.getW()-50){
-				this.setX(this.getX()+5);
+				this.setX(this.getX()+speed);
 			}
 			if(this.ndown&&this.getY()<900-this.getH()-70){
-				this.setY(this.getY()+5);
+				this.setY(this.getY()+speed);
 			}
 		}
 	@Override
@@ -120,5 +127,39 @@ public class NonPlayer extends ElementObj{
 		this.setX(lastX);
 		this.setY(lastY);
 		refuseMove=nfx;
+	}
+	
+	@Override
+	public void changeDirection(int lastTime) {
+		Ischange=true;
+		speed=-speed;
+		Timer timer = new Timer(true);
+		changeDirectionCount++;
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				changeDirectionCount--;
+				if(changeDirectionCount==0) {
+					speed = ASPEED;	
+					Ischange=false;
+				}
+			}
+		};
+		timer.schedule(task,lastTime*1000);
+	}
+	
+	@Override
+	public void deletechange(){
+		if(Ischange==true)
+		{
+			speed=ASPEED;
+			Ischange=false;
+		}
+	}
+	
+	
+	@Override
+	public void die() {
+		GameStart.toEndJPanel();
 	}
 }
