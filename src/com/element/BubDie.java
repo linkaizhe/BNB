@@ -11,23 +11,18 @@ public class BubDie extends ElementObj{
 	
 	@Override
 	public void showElement(Graphics g) {
-		g.drawImage(new ImageIcon("image/Characters/boom_center.png").getImage(), this.getX(), this.getY(),
-				 this.getW(), this.getH(), null);
-		g.drawImage(new ImageIcon("image/Characters/boom_left_end.png").getImage(), this.getX()-40, this.getY(),
-				 this.getW(), this.getH(), null);
-		g.drawImage(new ImageIcon("image/Characters/boom_right_end.png").getImage(), this.getX()+40, this.getY(),
-				 this.getW(), this.getH(), null);
-		g.drawImage(new ImageIcon("image/Characters/boom_up_end.png").getImage(), this.getX(), this.getY()-40,
-				 this.getW(), this.getH(), null);
-		g.drawImage(new ImageIcon("image/Characters/boom_down_end.png").getImage(), this.getX(), this.getY()+40,
+		g.drawImage(this.getIcon().getImage(), this.getX(), this.getY(),
 				 this.getW(), this.getH(), null);
 	}
 
 	@Override
 	public ElementObj createElement(String str) {
 		String [] split=str.split(",");
-		this.setX(Integer.parseInt(split[0]));
-		this.setY(Integer.parseInt(split[1]));
+		String op="image/Characters/boom_"+split[0]+"_end.png";
+		  ImageIcon icon=new ImageIcon(op);
+		  this.setIcon(icon);
+		  this.setX(Integer.parseInt(split[1]));
+		  this.setY(Integer.parseInt(split[2]));
 		this.setW(40);
 		this.setH(40);
 		return this;

@@ -1,6 +1,9 @@
 package com.element;
 
 import java.awt.Graphics;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 
@@ -87,9 +90,31 @@ public class Bubble extends ElementObj{
 	
 	@Override
 	public void die() {
-		ElementObj element = new BubDie().createElement(this.getX()+","+this.getY());//返回对象实体 初始化数据
+		ElementObj element = new BubDie().createElement("center,"+this.getX()+","+this.getY());
 		//装入到集合中
+		ElementObj element1 = new BubDie().createElement("left,"+(this.getX()-40)+","+this.getY());
+		ElementObj element2 = new BubDie().createElement("right,"+(this.getX()+40)+","+this.getY());
+		ElementObj element3 = new BubDie().createElement("up,"+this.getX()+","+(this.getY()-40));
+		ElementObj element4 = new BubDie().createElement("down,"+this.getX()+","+(this.getY()+40));
 		ElementManager.getManager().addElement(element, GameElement.DIE);
+		ElementManager.getManager().addElement(element1, GameElement.DIE);
+		ElementManager.getManager().addElement(element2, GameElement.DIE);
+		ElementManager.getManager().addElement(element3, GameElement.DIE);
+		ElementManager.getManager().addElement(element4, GameElement.DIE);
+		
+		Map<GameElement, List<ElementObj>> all = ElementManager.getManager().getGameElements();
+		List<ElementObj> maps = ElementManager.getManager().getElementsByKey(GameElement.MAPS);
+		List<ElementObj> bubbledie = ElementManager.getManager().getElementsByKey(GameElement.DIE);
+		for(int i=0;i<maps.size();i++) {
+			ElementObj wall = maps.get(i);
+			for(int j=1;j<bubbledie.size();j++) {
+				ElementObj Bubdie = bubbledie.get(j);
+				if(wall.pk(Bubdie) && !wall.isdestroy()) {
+					wall.setLive(true);
+					bubbledie.remove(j);
+				}
+			}
+		}
 	}
 	
 }

@@ -62,6 +62,46 @@ public class GameThread extends Thread{
 			List<ElementObj> play = em.getElementsByKey(GameElement.PLAY);
 			List<ElementObj> maps = em.getElementsByKey(GameElement.MAPS);
 			List<ElementObj> npc = em.getElementsByKey(GameElement.NPC);
+			List<ElementObj> bubbledie = em.getElementsByKey(GameElement.DIE);
+			List<ElementObj> bubbles = em.getElementsByKey(GameElement.BUBBLE);
+			List<ElementObj> things = em.getElementsByKey(GameElement.THINGS);
+			for(int i=0;i<maps.size();i++) {
+				ElementObj wall = maps.get(i);
+				for(int j=0;j<bubbledie.size();j++) {
+					ElementObj Bubdie = bubbledie.get(j);
+					if(wall.pk(Bubdie)&&(wall.isdestroy())) {
+						Bubdie.setLive(false);
+						wall.setLive(false);
+						break;
+					}
+				}
+			}
+			for(int i=0;i<play.size();i++) {
+				ElementObj player = play.get(i);
+				for(int j=0;j<things.size();j++) {
+					ElementObj thing = things.get(j);
+					if(player.pk(thing)) {
+						thing.setLive(false);
+						switch(thing.thingtype()){
+						case 4:player.changeDirection(5);break;
+						case 3:player.deletechange();break;
+						default:break;
+						}
+						break;
+					}
+				}
+			}
+			for(int i=0;i<bubbledie.size();i++) {
+				ElementObj die = bubbledie.get(i);
+				for(int j=0;j<play.size();j++) {
+					ElementObj playe = play.get(j);
+					if(die.pk(playe)) {
+						playe.setLive(false);
+						die.setLive(false);
+						break;
+					}
+				}
+			}
 			moveAndUpdate(all, gameTime); //游戏元素自动化方法
 			if(ElementPK(play, maps) || ElementPK(play, npc)) {
 				play.get(0).moveback();
@@ -91,8 +131,8 @@ public class GameThread extends Thread{
 //					将setLive(false)变为一个受攻击方法，还可以传入另外一个对象的攻击力
 //					当受攻击方法执行时，如果血量减为0再进行设置生存为false
 //					扩展  需要完成
-//					obj1.setLive(false);
-//					obj2.setLive(false);
+					obj1.setLive(false);
+					obj2.setLive(false);
 					return true;
 				}
 			}

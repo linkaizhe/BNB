@@ -2,20 +2,27 @@ package com.element;
 
 import java.awt.Graphics;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
 import com.element.ElementObj;
+import com.game.GameStart;
 import com.manager.ElementManager;
 import com.manager.GameElement;
 import com.manager.GameLoad;
 
 public class Play extends ElementObj{
 
+	public final static int ASPEED = 5;
 	private boolean left=false; //左
 	private boolean up=false;//上
 	private boolean right=false;//右
 	private boolean down=false;//下
+	protected int speed=ASPEED;//移动速度
+	protected int changeDirectionCount=0;
+	protected boolean Ischange=false;
 		
 		
 //	图片集合 使用map进行存储
@@ -89,16 +96,16 @@ public class Play extends ElementObj{
 		lastX=this.getX();
 		lastY=this.getY();
 		if(this.left && this.getX()>0){
-			this.setX(this.getX()-5);
+			this.setX(this.getX()-speed);
 		}
 		if(this.up&&this.getY()>0){
-			this.setY(this.getY()-5);
+			this.setY(this.getY()-speed);
 		}
 		if(this.right&&this.getX()<1200-this.getW()-50){
-			this.setX(this.getX()+5);
+			this.setX(this.getX()+speed);
 		}
 		if(this.down&&this.getY()<900-this.getH()-70){
-			this.setY(this.getY()+5);
+			this.setY(this.getY()+speed);
 		}
 	}
 	@Override
@@ -139,5 +146,38 @@ public class Play extends ElementObj{
 		this.setX(lastX);
 		this.setY(lastY);
 		refuseMove=fx;
+	}
+	
+	@Override
+	public void changeDirection(int lastTime) {
+		Ischange=true;
+		speed=-speed;
+		Timer timer = new Timer(true);
+		changeDirectionCount++;
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				changeDirectionCount--;
+				if(changeDirectionCount==0) {
+					speed = ASPEED;	
+					Ischange=false;
+				}
+			}
+		};
+		timer.schedule(task,lastTime*1000);
+	}
+	
+	@Override
+	public void deletechange(){
+		if(Ischange==true)
+		{
+			speed=ASPEED;
+			Ischange=false;
+		}
+	}
+	
+	@Override
+	public void die() {
+		GameStart.toEndJPanel();
 	}
 }

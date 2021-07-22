@@ -19,6 +19,7 @@ public abstract class ElementObj {
 //	未完待续 还有各种必要的状态值 如：是否生存、是否无敌等
 	private boolean live = true; //生存状态 true代表存活  false代表死亡
 	                             //可以采用枚举值来定义(生存、死亡、隐身、无敌等等)
+	protected boolean Destroy=false;
 //	注明：当重新定义一个用于判定状态的变量时，需要思考：1.初始化 2.值的改变 3.值的判定
 	public ElementObj() {
 	}
@@ -143,6 +144,20 @@ public abstract class ElementObj {
 	}
 	public void setLive(boolean live) {
 		this.live = live;
+	}
+	public boolean isdestroy(){
+		return Destroy;
+	}
+	public int thingtype() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public void changeDirection(int lasttime) {
+		
+	}
+	public void deletechange() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
